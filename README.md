@@ -56,6 +56,6 @@ If you have any questions or suggestions please contact me on
 
 [twitter](https://twitter.com/mouhsen_ibrahim)
 
-[linkedin](https://linkedin.com/in/mohsen-ibrahim-670b13112/)
+[linkedin](https://linkedin.com/in/mouhsen-ibrahim-670b13112/)
 
 [email](mailto:mohsen47@hotmail.co.uk)
