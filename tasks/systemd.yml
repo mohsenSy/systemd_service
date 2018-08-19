@@ -1,0 +1,33 @@
+- name: upload service binary files if necessary
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    mode: 0755
+  when:
+    - item.upload is defined
+    - item.upload
+  with_items:
+    - "{{ systemd_services }}"
+- name: Create service files for all services
+  template:
+    src: service.conf.j2
+    dest: "/etc/systemd/system/{{ item.name }}.service"
+    mode: 0644
+  with_items:
+    - "{{ systemd_services }}"
+  notify: reload systemd
+- name: Send logs to a log file
+  template:
+    src: syslog.conf.j2
+    dest: "/etc/rsyslog.d/{{ item.name }}.conf"
+  notify: restart rsyslog
+  when: item.log_file is defined
+  with_items: "{{ systemd_services }}"
+- name: Start services
+  systemd:
+    name: "{{ item.name }}.service"
+    state: started
+  when:
+    - item.started is defined
+    - item.started
+  with_items: "{{ systemd_services }}"

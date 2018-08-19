@@ -1,0 +1,9 @@
+---
+# handlers file for systemd_service
+- name: reload systemd
+  systemd:
+    daemon_reload: True
+- name: restart rsyslog
+  systemd:
+    name: rsyslog
+    state: restarted

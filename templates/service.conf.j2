@@ -1,0 +1,12 @@
+[Unit]
+Description={{ item.description|d("Service's description text") }}
+
+[Service]
+ExecStart={{ item.dst }}
+Type={{ item.type|d("simple") }}
+{% if item.type is defined and item.type == "forking" %}
+PIDFile={{ item.pid_file|d("/var/run/service.pid") }}
+{% endif %}
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ item.name }}
