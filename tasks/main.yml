@@ -2,5 +2,5 @@
 # tasks file for systemd_service
 - include_tasks: "systemd.yml"
   when:
-    - ansible.service_mgr == "systemd"
+    - ansible_facts.service_mgr == "systemd"
     - systemd_services is defined
